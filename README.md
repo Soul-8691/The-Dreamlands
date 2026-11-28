@@ -200,6 +200,7 @@ Hand work fixes things rather than creating them. Every generated asset is credi
 - Ocarina of Time, Majora's Mask and Twilight Princess;
 - Morrowind, Oblivion and Skyrim;
 - Dark Souls 1–3;
+- The Witcher 1–3;
 - the public-domain stories of H. P. Lovecraft, especially *The Dream-Quest of Unknown Kadath*.
 
 All names and characters in the game are original, except the public-domain ones from Lovecraft's stories.

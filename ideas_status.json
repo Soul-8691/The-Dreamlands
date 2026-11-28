@@ -1,11 +1,11 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-28T12:33:10",
+  "updated": "2026-11-28T13:26:45",
   "counts": {
-    "awaiting": 28,
-    "approved": 611,
-    "denied": 125,
-    "total": 764
+    "awaiting": 29,
+    "approved": 617,
+    "denied": 131,
+    "total": 777
   },
   "ui": {
     "selected": [
@@ -19,7 +19,7 @@
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-27T16:03:20"
+    "at": "2026-11-28T13:26:45"
   },
   "ideas": {
     "PIL-01": {
@@ -286,6 +286,28 @@
       "file": "IDEAS.md",
       "in_ideas_md": true
     },
+    "STY-22": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-28T13:22:19",
+      "title": "The monster was a person",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STY-23": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-28T13:22:40",
+      "title": "Choices that come back",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
     "HER-02": {
       "status": "denied",
       "note": "",
@@ -362,6 +384,17 @@
       "starred": true,
       "in_ideas_md": true,
       "file": "IDEAS.md"
+    },
+    "HER-11": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-28T13:22:44",
+      "title": "Tracker's eye",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
     },
     "CMB-01": {
       "status": "approved",
@@ -858,6 +891,39 @@
       "file": "IDEAS.md",
       "in_ideas_md": true
     },
+    "CMB-46": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-28T13:25:45",
+      "title": "Blade oils",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-47": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-28T13:25:47",
+      "title": "A blade for monsters, a blade for men",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-48": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-28T13:26:02",
+      "title": "Quick Rites mid-swing",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
     "VAL-01": {
       "status": "denied",
       "note": "",
@@ -1270,6 +1336,17 @@
       "note": "",
       "changed": "2026-11-26T12:52:54",
       "title": "Respec at a shrine",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-30": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-28T13:23:56",
+      "title": "Brews and the bitter limit",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": false,
@@ -2299,6 +2376,39 @@
       "file": "IDEAS.md",
       "in_ideas_md": true
     },
+    "WLD-46": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-28T13:24:07",
+      "title": "Contract boards",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-47": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-28T13:24:43",
+      "title": "Investigate before you fight",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-48": {
+      "status": "approved",
+      "note": "No card table",
+      "changed": "2026-11-28T13:25:04",
+      "title": "Roadside inns",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
     "UIX-01": {
       "status": "approved",
       "note": "",
@@ -2601,6 +2711,17 @@
       "note": "You can pin where to go, as in Skyrim",
       "changed": "2026-11-26T19:29:40",
       "title": "Quest log in the pause menu",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-29": {
+      "status": "approved",
+      "note": "No oil system",
+      "changed": "2026-11-28T13:25:31",
+      "title": "Know your quarry",
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": false,
@@ -4658,6 +4779,28 @@
       "note": "",
       "changed": "2026-11-26T19:30:30",
       "title": "Merchant trading",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The Watch",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-20": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Haggling over the reward",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The Watch",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-21": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-28T13:24:55",
+      "title": "Shardfall, the tavern card game",
       "category": "Townsfolk & Dialogue (NPC)",
       "section": "The Watch",
       "starred": false,
@@ -8699,78 +8842,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T12:53:47",
-      "id": "TRE-12",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:53:49",
-      "id": "TRE-13",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:54:00",
-      "id": "TRE-15",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:54:19",
-      "id": "TRE-17",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:54:21",
-      "id": "TRE-18",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:56:47",
-      "id": "PLT-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:56:52",
-      "id": "PLT-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:56:59",
-      "id": "PLT-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:57:03",
-      "id": "PLT-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:57:08",
-      "id": "PLT-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:57:10",
-      "id": "PLT-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:57:14",
-      "id": "PLT-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T12:57:26",
       "id": "PLT-08",
       "from": "awaiting",
@@ -11695,6 +11766,78 @@
     {
       "time": "2026-11-28T12:33:10",
       "id": "ONE-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-28T13:22:19",
+      "id": "STY-22",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-28T13:22:40",
+      "id": "STY-23",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-28T13:22:44",
+      "id": "HER-11",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-28T13:23:56",
+      "id": "STA-30",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-28T13:24:07",
+      "id": "WLD-46",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-28T13:24:43",
+      "id": "WLD-47",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-28T13:24:55",
+      "id": "NPC-21",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-28T13:25:04",
+      "id": "WLD-48",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-28T13:25:31",
+      "id": "UIX-29",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-28T13:25:45",
+      "id": "CMB-46",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-28T13:25:47",
+      "id": "CMB-47",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-28T13:26:02",
+      "id": "CMB-48",
       "from": "awaiting",
       "to": "approved"
     }

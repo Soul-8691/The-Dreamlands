@@ -11,7 +11,7 @@ A 3D action-adventure fantasy RPG in Python (pygame-ce + moderngl). MIT, free on
 - When the user denies an idea, remove or replace its tasks in ROADMAP.md the next time you edit it.
 
 ## Content rules
-- Inspirations are limited to: Ocarina of Time, Majora's Mask, Twilight Princess, Morrowind, Oblivion, Skyrim, and Dark Souls 1–3. Programming ideas may come from DREAM-QUEST.md and THE_DREAMLANDS.md.
+- Inspirations are limited to: Ocarina of Time, Majora's Mask, Twilight Princess, Morrowind, Oblivion, Skyrim, Dark Souls 1–3, and The Witcher 1–3. Programming ideas may come from DREAM-QUEST.md and THE_DREAMLANDS.md.
 - No Lovecraftian content unless manually approved. No concepts exclusive to Morrowind. Generic fantasy tropes are fine. Use original names, not borrowed terms (Estus, bonfire, Thu'um and so on).
 - The story is a **generic hero plot** (a humble chosen hero, a wise mentor, a returning Dark Lord, four Crown Shards). It is **not** about lycanthropy: the title "Lycantrope" refers to the roster of fantasy-trope monsters. Werewolves can appear only as ordinary enemies.
 - No character customization for now: the hero is Rowan Fenhallow. Rowan is a farmhand who wields the Dawnblade. Player beast forms (DRM-25 Dream-Shapes) are allowed but saved for much later.

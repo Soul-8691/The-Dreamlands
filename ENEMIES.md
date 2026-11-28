@@ -14,7 +14,7 @@ The game is named for its monsters, so this is the bestiary wish list. Every ent
   - **humanoid** means Meshy auto-rig plus its animation library (ART-03), which is cheap.
   - **procedural** means it's animated in code (ART-04), which takes more work for unusual bodies.
 - **Voice** is either an ElevenLabs designed voice with words, or **SFX** (ElevenLabs Sound Effects only).
-- Sources are limited to the nine inspiration games. **NEW** means an original twist on the trope.
+- Sources are limited to the ten inspiration games (see IDEAS.md). **NEW** means an original twist on the trope.
 
 ---
 
