@@ -40,7 +40,7 @@ STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run":
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
 RADIUS = {"bandit_lean": 0.38, "bandit_stocky": 0.45, "guard": 0.4, "shepherd": 0.38, "smith_hand": 0.42, "merchant": 0.38, "dairymaid": 0.33,
-          "weaver": 0.35, "seller": 0.35, "rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "cultist": 0.38, "cultist_f": 0.35, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8, "villager_m": 0.35, "villager_f": 0.33, "farmer": 0.38}
+          "weaver": 0.35, "seller": 0.35, "rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "cultist": 0.38, "cultist_f": 0.35, "leng_raider": 0.4, "leng_captain": 0.45, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8, "villager_m": 0.35, "villager_f": 0.33, "farmer": 0.38}
 
 
 # ---------------------------------------------------------------------------- #

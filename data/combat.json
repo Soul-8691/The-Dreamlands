@@ -519,6 +519,8 @@
     "goblin":        {"level": 2, "hp": 90,  "attack": {"slash": 40},  "defence": 15, "poise": 10, "poise_damage": 10, "xp": 30,  "weight": 0.8},
     "cultist":       {"level": 5, "hp": 110, "attack": {"strike": 34}, "defence": 14, "poise": 12, "poise_damage": 9,  "xp": 70,  "weight": 1.0, "spell": {"frost": 48}},
     "cultist_f":     {"level": 5, "hp": 100, "attack": {"strike": 30}, "defence": 12, "poise": 10, "poise_damage": 8,  "xp": 70,  "weight": 0.9, "spell": {"frost": 50}},
+    "leng_raider":   {"level": 4, "hp": 140, "attack": {"slash": 46},  "defence": 18, "poise": 18, "poise_damage": 12, "xp": 65,  "weight": 1.0},
+    "leng_captain":  {"level": 7, "hp": 300, "attack": {"slash": 72},  "defence": 32, "poise": 45, "poise_damage": 30, "xp": 190, "weight": 1.4},
     "wolf":          {"level": 2, "hp": 80,  "attack": {"pierce": 36}, "defence": 12, "poise": 8,  "poise_damage": 6,  "xp": 30,  "weight": 1.0},
     "bandit_lean":   {"level": 3, "hp": 130, "attack": {"slash": 48},  "defence": 20, "poise": 20, "poise_damage": 12, "xp": 50,  "weight": 1.0},
     "bandit_stocky": {"level": 3, "hp": 150, "attack": {"slash": 50},  "defence": 22, "poise": 25, "poise_damage": 14, "xp": 55,  "weight": 1.2},

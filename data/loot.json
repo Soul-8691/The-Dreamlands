@@ -80,6 +80,16 @@
       {"item": "copper", "chance": 0.85, "count": [4, 12]},
       {"item": "bread", "chance": 0.2},
       {"item": "apple", "chance": 0.25, "count": [1, 2]}
+    ],
+    "leng_raider": [
+      {"item": "copper", "chance": 0.9, "count": [6, 16]},
+      {"item": "bread", "chance": 0.25}
+    ],
+    "leng_captain": [
+      {"item": "copper", "chance": 1.0, "count": [40, 90]},
+      {"item": "stew", "chance": 0.5},
+      {"item": "hed_10", "chance": 0.1},
+      {"item": "arm_10", "chance": 0.1}
     ]
   }
 }

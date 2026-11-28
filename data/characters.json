@@ -686,6 +686,126 @@
         "cloth_from_m": 0.07
       }
     },
+    "leng_raider": {
+      "name": "Man of Leng, raider (DRM-36)",
+      "rig": "DRM-36/tripo/raider/v1/rig/animated.glb",
+      "height_m": 1.74,
+      "clips": {
+        "idle": {
+          "file": "DRM-36/tripo/raider/v1/rig/animated.glb",
+          "clip": "idle",
+          "loop": true
+        },
+        "alert": {
+          "file": "DRM-36/tripo/raider/v1/rig/animated.glb",
+          "clip": "look_around",
+          "loop": true
+        },
+        "walk": {
+          "file": "DRM-36/tripo/raider/v1/rig/animated.glb",
+          "clip": "walk",
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "DRM-36/tripo/raider/v1/rig/animated.glb",
+          "clip": "run",
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "attack1": {
+          "file": "DRM-36/tripo/raider/v1/rig/animated.glb",
+          "clip": "slash",
+          "speed": 1.25
+        },
+        "hit": {
+          "file": "DRM-36/tripo/raider/v1/rig/animated.glb",
+          "clip": "hit_to_body_01",
+          "speed": 1.2
+        },
+        "death": {
+          "file": "DRM-36/tripo/raider/v1/rig/animated.glb",
+          "clip": "defeat_03"
+        }
+      },
+      "speeds": {
+        "walk": 1.4,
+        "run": 4.6
+      },
+      "ai": {
+        "aggro_m": 22,
+        "leash_m": 50,
+        "reach_m": 1.8,
+        "attack_every_s": [
+          1.4,
+          2.4
+        ],
+        "wander_m": 8
+      },
+      "equipment": {
+        "right_hand": "LENG-SABRE"
+      }
+    },
+    "leng_captain": {
+      "name": "Man of Leng, Raid-Captain (DRM-36)",
+      "rig": "DRM-36/tripo/captain/v1/rig/animated.glb",
+      "height_m": 1.9,
+      "clips": {
+        "idle": {
+          "file": "DRM-36/tripo/captain/v1/rig/animated.glb",
+          "clip": "idle",
+          "loop": true
+        },
+        "alert": {
+          "file": "DRM-36/tripo/captain/v1/rig/animated.glb",
+          "clip": "look_around",
+          "loop": true
+        },
+        "walk": {
+          "file": "DRM-36/tripo/captain/v1/rig/animated.glb",
+          "clip": "walk",
+          "loop": true,
+          "move_speed": 1.3
+        },
+        "run": {
+          "file": "DRM-36/tripo/captain/v1/rig/animated.glb",
+          "clip": "run",
+          "loop": true,
+          "move_speed": 4.4
+        },
+        "attack1": {
+          "file": "DRM-36/tripo/captain/v1/rig/animated.glb",
+          "clip": "slash",
+          "speed": 1.35
+        },
+        "hit": {
+          "file": "DRM-36/tripo/captain/v1/rig/animated.glb",
+          "clip": "hit_to_body_01",
+          "speed": 1.2
+        },
+        "death": {
+          "file": "DRM-36/tripo/captain/v1/rig/animated.glb",
+          "clip": "defeat_03"
+        }
+      },
+      "speeds": {
+        "walk": 1.3,
+        "run": 4.4
+      },
+      "ai": {
+        "aggro_m": 26,
+        "leash_m": 60,
+        "reach_m": 2.0,
+        "attack_every_s": [
+          1.0,
+          1.8
+        ],
+        "wander_m": 5
+      },
+      "equipment": {
+        "right_hand": "LENG-SABRE"
+      }
+    },
     "battlemage": {
       "name": "Battlemage",
       "rig": "MON-29/v1/rig/rigged.glb",
@@ -1543,6 +1663,24 @@
       "height_m": 0.55,
       "hold": "shield",
       "off_arm_m": 0.08
+    },
+    "LENG-SABRE": {
+      "name": "Leng Sabre",
+      "model": "DRM-36/tripo/sabre/v1/model.glb",
+      "length_m": 0.9,
+      "tip": "+y",
+      "grip_from_end": 0.12,
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "end_color": [
+        1,
+        1,
+        1
+      ],
+      "end_fraction": 0.0
     }
   },
   "armor": {

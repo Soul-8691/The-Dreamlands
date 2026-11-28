@@ -140,6 +140,8 @@
     {"name": "battlemage patrol, north-east (Brackenvale)", "kind": "battlemage", "count": 2, "anchor": "Brackenvale Village", "at": [452, 421], "radius": 6},
     {"name": "battlemage patrol, north-east (Brackenvale)", "kind": "battlemage", "count": 2, "anchor": "Brackenvale Village", "at": [395, 289], "radius": 6},
     {"name": "cultists at Bracken Mere (night)", "kind": "cultist", "count": 2, "anchor": "Brackenvale Village", "at": [-434, 90], "radius": 10, "night": true},
-    {"name": "cultists at Bracken Mere (night)", "kind": "cultist_f", "count": 1, "anchor": "Brackenvale Village", "at": [-434, 90], "radius": 10, "night": true}
+    {"name": "cultists at Bracken Mere (night)", "kind": "cultist_f", "count": 1, "anchor": "Brackenvale Village", "at": [-434, 90], "radius": 10, "night": true},
+    {"name": "Leng raiders' camp, Old Watch Beck by Bracken Mere (night)", "kind": "leng_raider", "count": 3, "anchor": "Brackenvale Village", "at": [-651, 157], "radius": 9, "night": true},
+    {"name": "Leng Raid-Captain, Old Watch Beck by Bracken Mere (night)", "kind": "leng_captain", "count": 1, "anchor": "Brackenvale Village", "at": [-651, 160], "radius": 2, "night": true}
   ]
 }
