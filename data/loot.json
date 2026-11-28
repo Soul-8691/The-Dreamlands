@@ -19,17 +19,18 @@
     "bandit_lean": [
       {"item": "copper", "chance": 0.9, "count": [5, 14]},
       {"item": "bread", "chance": 0.25},
-      {"item": "iron_shortsword", "chance": 0.06},
       {"item": "hed_04", "chance": 0.04},
       {"item": "arm_04", "chance": 0.04},
-      {"item": "leg_04", "chance": 0.04}
+      {"item": "leg_04", "chance": 0.04},
+      {"item": "bandits_cutlass", "chance": 0.08},
+      {"item": "spiked_bandit_targe", "chance": 0.05}
     ],
     "bandit_stocky": [
       {"item": "copper", "chance": 0.9, "count": [6, 16]},
       {"item": "stew", "chance": 0.15},
-      {"item": "flanged_mace", "chance": 0.06},
       {"item": "trs_04", "chance": 0.04},
-      {"item": "spiked_bandit_targe", "chance": 0.05}
+      {"item": "spiked_bandit_targe", "chance": 0.05},
+      {"item": "bandits_cutlass", "chance": 0.08}
     ],
     "battlemage": [
       {"item": "copper", "chance": 0.9, "count": [8, 20]},
@@ -37,13 +38,14 @@
       {"item": "hed_09", "chance": 0.04},
       {"item": "arm_09", "chance": 0.04},
       {"item": "trs_09", "chance": 0.04},
-      {"item": "leg_09", "chance": 0.04}
+      {"item": "leg_09", "chance": 0.04},
+      {"item": "flanged_mace", "chance": 0.08}
     ],
     "bruiser": [
       {"item": "copper", "chance": 0.9, "count": [6, 18]},
       {"item": "stew", "chance": 0.2},
-      {"item": "militia_kite_shield", "chance": 0.05},
-      {"item": "hed_05", "chance": 0.04}
+      {"item": "hed_05", "chance": 0.04},
+      {"item": "bandits_great_maul", "chance": 0.08}
     ],
     "chest_wooden": [
       {"item": "copper", "chance": 1.0, "count": [10, 30]},
@@ -83,13 +85,15 @@
     ],
     "leng_raider": [
       {"item": "copper", "chance": 0.9, "count": [6, 16]},
-      {"item": "bread", "chance": 0.25}
+      {"item": "bread", "chance": 0.25},
+      {"item": "leng_sabre", "chance": 0.06}
     ],
     "leng_captain": [
       {"item": "copper", "chance": 1.0, "count": [40, 90]},
       {"item": "stew", "chance": 0.5},
       {"item": "hed_10", "chance": 0.1},
-      {"item": "arm_10", "chance": 0.1}
+      {"item": "arm_10", "chance": 0.1},
+      {"item": "leng_sabre", "chance": 0.35}
     ]
   }
 }

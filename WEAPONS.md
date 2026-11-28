@@ -62,6 +62,7 @@ Weapons Rowan can find, earn or take from the monsters he kills. The idea tracke
 - [ONE-15] **Ember Pick** — A forge-hot war pick from the Ashen warcamp. · Mace · 42 pierce + 14 fire · Might C · Req: Might 16 · Wt 4.0 · Status: burn 20 · Special: pierces armor (ignores 20% of target defense). Prompt: "war pick with a glowing orange-hot iron spike, dark iron haft" *(Orc Warcamp)*
 - [ONE-16] **Brood Fang Estoc** — A long thrusting sword made from the Brood Queen's fang (BOS-02). · Longsword · 46 pierce · Dex A · Req: Dex 20 · Wt 2.8 · Status: poison 35 · Special: the heavy thrust has extra reach. Prompt: "long thin thrusting sword with a blade made from a giant black spider fang" *(Brood Queen)*
 - [ONE-17] **Mire Hag's Sickle** — Old Mother Mire's harvesting sickle (BOS-03). · **New class: dagger** · 32 slash · Dex B, Faith D · Req: Dex 14, Faith 12 · Wt 1.4 · Status: poison 25, bleed 15 · Special: hits apply both statuses at once. Prompt: "crooked rusty witch's sickle with a gnarled wooden handle, charms tied on" *(Old Mother Mire)*
+- [ONE-18] **Leng Sabre** — The serrated, curved sabre of the horned Men of Leng (DRM-36), with a ram-skull pommel. · Longsword · 42 slash · Might E, Dex B · Req: Dex 14 · Wt 2.4 · Status: bleed 20 · Special: the serrated edge tears; the light string is fast. Model: Tripo3D `DRM-36/tripo/sabre/v1`. *(Men of Leng; the Raid-Captain drops it most often)*
 
 ## 2. Two-handed Weapons (TWO)
 

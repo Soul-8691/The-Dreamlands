@@ -21,7 +21,8 @@
     "'sheath': equipment slot whose item can be put away on the back (F key for Rowan).",
     "'lines': which set of lines (tools/voice/npc_lines.json role) a character speaks; a spawn group's 'lines' overrides it (travellers, the patrol).",
     "Items: 'hold': 'shield' straps it to the outside of the forearm (face out, point toward the hand); 'off_arm_m' is how far out.",
-    "Rowan's back / strafe_left / strafe_right play while he's locked on and moving backward or sideways. Both strafes use the side-step clip mirrored (sword low, off-hand up); strafe_left also plays it backwards ('reverse': true) so it steps the other way."
+    "Rowan's back / strafe_left / strafe_right play while he's locked on and moving backward or sideways. Both strafes use the side-step clip mirrored (sword low, off-hand up); strafe_left also plays it backwards ('reverse': true) so it steps the other way.",
+    "Rowan wears what his inventory has equipped (dress_from_inventory): an item's 'inventory' names the combat.json / items.json id it shows, 'worn' where a non-shield off-hand item hangs; an armor set's 'pieces' names the inventory piece for each body slot. Gear without a model isn't drawn."
   ],
   "characters": {
     "rowan": {
@@ -129,7 +130,8 @@
         "hip_left": "MAG-11",
         "armor": "TRS-05"
       },
-      "sheath": "right_hand"
+      "sheath": "right_hand",
+      "dress_from_inventory": true
     },
     "goblin": {
       "name": "Goblin Cutthroat",
@@ -1549,7 +1551,8 @@
         0.22,
         0.15
       ],
-      "end_fraction": 0.2
+      "end_fraction": 0.2,
+      "inventory": "dawnblade"
     },
     "ONE-04": {
       "name": "Goblin Shiv",
@@ -1567,12 +1570,15 @@
         0.34,
         0.24
       ],
-      "end_fraction": 0.45
+      "end_fraction": 0.45,
+      "inventory": "goblin_shiv"
     },
     "MAG-11": {
       "name": "Tome of Wards",
       "model": "MAG-11/v1/textured/model.glb",
-      "height_m": 0.3
+      "height_m": 0.3,
+      "inventory": "tome_of_wards",
+      "worn": "hip_left"
     },
     "TWO-08": {
       "name": "Bandit's Great Maul",
@@ -1594,7 +1600,8 @@
       "hold": "along_arm",
       "tilt_deg": 18,
       "two_handed": true,
-      "second_grip_from_end": 0.1
+      "second_grip_from_end": 0.1,
+      "inventory": "bandits_great_maul"
     },
     "ONE-07": {
       "name": "Flanged Mace",
@@ -1612,7 +1619,8 @@
         0.17,
         0.11
       ],
-      "end_fraction": 0.4
+      "end_fraction": 0.4,
+      "inventory": "flanged_mace"
     },
     "ONE-03": {
       "name": "Iron Shortsword",
@@ -1630,14 +1638,16 @@
         1,
         1
       ],
-      "end_fraction": 0.0
+      "end_fraction": 0.0,
+      "inventory": "iron_shortsword"
     },
     "SHD-03": {
       "name": "Militia Kite Shield",
       "model": "SHD-03/v1/textured/model.glb",
       "height_m": 0.85,
       "hold": "shield",
-      "off_arm_m": 0.07
+      "off_arm_m": 0.07,
+      "inventory": "militia_kite_shield"
     },
     "ONE-05": {
       "name": "Bandit's Cutlass",
@@ -1655,14 +1665,16 @@
         1,
         1
       ],
-      "end_fraction": 0.0
+      "end_fraction": 0.0,
+      "inventory": "bandits_cutlass"
     },
     "SHD-04": {
       "name": "Spiked Bandit Targe",
       "model": "SHD-04/v1/textured/model.glb",
       "height_m": 0.55,
       "hold": "shield",
-      "off_arm_m": 0.08
+      "off_arm_m": 0.08,
+      "inventory": "spiked_bandit_targe"
     },
     "LENG-SABRE": {
       "name": "Leng Sabre",
@@ -1680,7 +1692,8 @@
         1,
         1
       ],
-      "end_fraction": 0.0
+      "end_fraction": 0.0,
+      "inventory": "leng_sabre"
     }
   },
   "armor": {
@@ -1692,7 +1705,13 @@
         "arms",
         "torso",
         "legs"
-      ]
+      ],
+      "pieces": {
+        "head": "hed_05",
+        "arms": "arm_05",
+        "torso": "trs_05",
+        "legs": "leg_05"
+      }
     }
   }
 }

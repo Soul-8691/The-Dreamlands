@@ -1,11 +1,11 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-27T16:03:20",
+  "updated": "2026-11-28T12:33:10",
   "counts": {
     "awaiting": 28,
-    "approved": 610,
+    "approved": 611,
     "denied": 125,
-    "total": 763
+    "total": 764
   },
   "ui": {
     "selected": [
@@ -8074,6 +8074,17 @@
       "file": "WEAPONS.md",
       "in_ideas_md": true
     },
+    "ONE-18": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-28T12:33:10",
+      "title": "Leng Sabre",
+      "category": "Weapons · One-handed Weapons (ONE)",
+      "section": "",
+      "starred": false,
+      "file": "WEAPONS.md",
+      "in_ideas_md": true
+    },
     "TWO-01": {
       "status": "approved",
       "note": "",
@@ -8687,12 +8698,6 @@
     }
   },
   "history": [
-    {
-      "time": "2026-11-24T12:53:44",
-      "id": "TRE-11",
-      "from": "awaiting",
-      "to": "approved"
-    },
     {
       "time": "2026-11-24T12:53:47",
       "id": "TRE-12",
@@ -11684,6 +11689,12 @@
     {
       "time": "2026-11-27T16:02:28",
       "id": "WPR-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-28T12:33:10",
+      "id": "ONE-18",
       "from": "awaiting",
       "to": "approved"
     }

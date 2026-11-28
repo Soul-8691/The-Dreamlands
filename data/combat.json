@@ -85,6 +85,42 @@
       "stamina": {"light": 9, "heavy": 16},
       "requirements": {"dexterity": 12},
       "crit_multiplier": 1.8
+    },
+    "bandits_cutlass": {
+      "name": "Bandit's Cutlass",
+      "damage": {"slash": 40},
+      "scaling": {"might": "D", "dexterity": "B"},
+      "poise_damage": 10,
+      "reach_m": 1.9,
+      "arc_deg": 80,
+      "weight": 2.5,
+      "stamina": {"light": 13, "heavy": 24},
+      "requirements": {"dexterity": 13},
+      "crit_multiplier": 1.5
+    },
+    "bandits_great_maul": {
+      "name": "Bandit's Great Maul",
+      "damage": {"strike": 78},
+      "scaling": {"might": "B"},
+      "poise_damage": 32,
+      "reach_m": 2.3,
+      "arc_deg": 75,
+      "weight": 11.0,
+      "stamina": {"light": 28, "heavy": 44},
+      "requirements": {"might": 20},
+      "crit_multiplier": 1.4
+    },
+    "leng_sabre": {
+      "name": "Leng Sabre",
+      "damage": {"slash": 42},
+      "scaling": {"might": "E", "dexterity": "B"},
+      "poise_damage": 10,
+      "reach_m": 2.0,
+      "arc_deg": 75,
+      "weight": 2.4,
+      "stamina": {"light": 12, "heavy": 23},
+      "requirements": {"dexterity": 14},
+      "crit_multiplier": 1.6
     }
   },
   "catalysts": {

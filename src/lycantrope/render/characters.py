@@ -162,6 +162,7 @@ class Attachment:
     second_chain: tuple[int, int, int] | None = None
     in_hand: bool = False         # put away while swimming (or sheathed)
     sheathed: bool = False        # the same item worn on the back: drawn only while it's put away
+    shield: bool = False          # stays on the arm when the sword is sheathed (but not while swimming)
 
 
 def _rotation_between(a: np.ndarray, b: np.ndarray) -> np.ndarray:
@@ -230,8 +231,10 @@ class CharType:
     speeds: dict[str, float]
     ai: AiParams | None
     attachments: list[Attachment] = field(default_factory=list)
-    armor: GpuMesh | None = None
-    armor_slots: tuple[str, ...] = ()
+    armor_sets: dict[str, GpuMesh] = field(default_factory=dict)   # armor set id -> fitted mesh, split by SLOTS
+    armor_wear: dict[str, str] = field(default_factory=dict)       # body slot -> the armor set worn there
+    item_cache: dict[str, "Item"] = field(default_factory=dict)    # held/hung item id -> its GPU mesh
+    dress: tuple | None = None    # Rowan: (body mesh, bind pose, sheath slot), to re-dress from his inventory
     height: float = 1.0           # in the world, after scale
     scale: float = 1.0            # rigs Meshy left at their own size (quadrupeds) -> height_m
     lift: float = 0.0             # raise the rig so its bind-pose feet sit on y = 0 (rig units)
@@ -527,41 +530,60 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
         # armor first: it decides which body parts are drawn
         slots = None
         eq = spec.get("equipment", {})
-        if "armor" in eq and eq["armor"] in armor_specs:
-            a = armor_specs[eq["armor"]]
-            outfit_path = MODELS / a["model"]
+        # Rowan (dress_from_inventory) gets every armor set fitted, and wears what his inventory says
+        sets = list(armor_specs) if spec.get("dress_from_inventory") else [eq.get("armor")]
+        for sid in sets:
+            if sid not in armor_specs:
+                continue
+            outfit_path = MODELS / armor_specs[sid]["model"]
             if outfit_path.exists():
                 fit = _fit_cached(body, skel, outfit_path, rig)
-                t.armor = upload(ctx, fit, triangle_slots(fit, skel.names))
-                t.armor_slots = tuple(a.get("slots", SLOTS))
-                slots = triangle_slots(body, skel.names)
+                t.armor_sets[sid] = upload(ctx, fit, triangle_slots(fit, skel.names))
+        if eq.get("armor") in t.armor_sets:
+            t.armor_wear = {s: eq["armor"] for s in armor_specs[eq["armor"]].get("slots", SLOTS)}
+        if t.armor_sets:
+            slots = triangle_slots(body, skel.names)
         t.body = upload(ctx, body, slots)
         # held and hung items
         for slot, item_id in eq.items():
-            if slot == "armor" or item_id not in items:
-                continue
-            ispec = items[item_id]
-            if not (MODELS / ispec["model"]).exists():
-                continue
-            _m, item = load_item(ctx, ispec)
-            att = place_item(skel, bind, slot, item, body, ispec)
-            if ispec.get("two_handed") and slot in ("right_hand", "left_hand"):
-                other = "Left" if slot == "right_hand" else "Right"
-                L = ispec["length_m"]
-                # the second hand sits this far from the main grip, toward the end of the handle
-                gap = (ispec.get("grip_from_end", 0.1) - ispec.get("second_grip_from_end", 0.08)) * L
-                att.second_grip = np.array([0.0, -gap, 0.0, 1.0])
-                att.second_chain = tuple(skel.joint_index(f"{other}{j}") for j in ("Arm", "ForeArm", "Hand"))
-            t.attachments.append(att)
-            if spec.get("sheath") == slot:                # a second place for it: across the back
-                back = place_on_back(skel, bind, item, ispec)
-                if back is not None:
-                    t.attachments.append(back)
+            if slot != "armor":
+                attach_item(ctx, t, bind, body, slot, item_id, items, spec.get("sheath"))
+        if spec.get("dress_from_inventory"):
+            t.dress = (body, bind, spec.get("sheath"))
         return t
     # not rigged yet: a static mesh moved by code
     m = normalized_static(load_mesh(MODELS / spec["static"], skinned=False), spec.get("height_m", 1.0))
     return CharType(key, None, upload(ctx, m), {}, dict(STATIC_CLIPS), spec["speeds"], ai,
                     height=spec.get("height_m", 1.0))
+
+
+def attach_item(ctx, t: CharType, bind: np.ndarray, body: MeshData, slot: str, item_id: str, items: dict,
+                sheath: str | None = None) -> None:
+    """Hang one item (characters.json 'items') on a type: in a hand, on a hip, or strapped to the forearm
+    (shields). A sword in the sheath slot also gets a copy across the back, drawn while it's put away."""
+    if item_id not in items:
+        return
+    ispec = items[item_id]
+    if not (MODELS / ispec["model"]).exists():
+        return
+    item = t.item_cache.get(item_id)
+    if item is None:
+        _m, item = load_item(ctx, ispec)
+        t.item_cache[item_id] = item
+    skel = t.skel
+    att = place_item(skel, bind, slot, item, body, ispec)
+    if ispec.get("two_handed") and slot in ("right_hand", "left_hand"):
+        other = "Left" if slot == "right_hand" else "Right"
+        L = ispec["length_m"]
+        # the second hand sits this far from the main grip, toward the end of the handle
+        gap = (ispec.get("grip_from_end", 0.1) - ispec.get("second_grip_from_end", 0.08)) * L
+        att.second_grip = np.array([0.0, -gap, 0.0, 1.0])
+        att.second_chain = tuple(skel.joint_index(f"{other}{j}") for j in ("Arm", "ForeArm", "Hand"))
+    t.attachments.append(att)
+    if sheath == slot:                                # a second place for it: across the back
+        back = place_on_back(skel, bind, item, ispec)
+        if back is not None:
+            t.attachments.append(back)
 
 
 def hand_center(skel: Skeleton, body: MeshData, joint: int, bind: np.ndarray) -> np.ndarray | None:
@@ -659,7 +681,7 @@ def place_item(skel: Skeleton, bind: np.ndarray, slot: str, item: Item, body: Me
         out /= np.linalg.norm(out)
         centre = (elbow + hand) / 2 + out * float(spec.get("off_arm_m", 0.07))
         world = look_basis(centre, up, out)
-        return Attachment(item, joint, np.linalg.inv(bind[joint]) @ world, in_hand=True)
+        return Attachment(item, joint, np.linalg.inv(bind[joint]) @ world, in_hand=True, shield=True)
     if slot in ("right_hand", "left_hand"):
         side = "Right" if slot == "right_hand" else "Left"
         joint = skel.joint_index(f"{side}Hand")
@@ -736,6 +758,10 @@ class CharacterSystem:
             if on_progress is not None:
                 on_progress(i + 1, n_types, key)
         self.helmet = True
+        # Rowan's gear on his model: inventory item id -> the characters.json item that shows it
+        self.item_specs = data["items"]
+        self.armor_specs = data.get("armor", {})
+        self.shown_as = {s["inventory"]: k for k, s in self.item_specs.items() if "inventory" in s}
         from lycantrope.render.spells import Spells
         self.spells = Spells(ctx, shaders, world)
         from lycantrope.render.rites import RiteEffect
@@ -936,6 +962,7 @@ class CharacterSystem:
         self.rowan.fighter = rc.fighter
         self.rowan.roll_window = float(cfg["fall"]["roll_window_s"])
         self.apply_stats()
+        self.dress_rowan()
 
     def apply_stats(self) -> None:
         cfg = self.combat_cfg
@@ -955,6 +982,34 @@ class CharacterSystem:
             return
         self.progress.refresh(rc.fighter)
         self.apply_stats()
+        self.dress_rowan()
+
+    def dress_rowan(self) -> None:
+        """Put Rowan's equipped gear on his model: the armor pieces that have a model, the main-hand
+        weapon (with its copy on his back), and the off-hand shield or catalyst. Slots whose item
+        has no model show his own clothes / nothing."""
+        rc = self.rowan_char
+        t = rc.t if rc is not None else None
+        if t is None or t.dress is None:
+            return
+        body, bind, sheath = t.dress
+        eq = self.progress.inv.equipped
+        t.armor_wear = {}
+        for slot in SLOTS:
+            iid = eq.get(slot)
+            for sid in t.armor_sets:
+                if iid and self.armor_specs[sid].get("pieces", {}).get(slot) == iid:
+                    t.armor_wear[slot] = sid
+        t.attachments = []
+        main = self.shown_as.get(eq.get("mainhand"))
+        if main:
+            attach_item(self.ctx, t, bind, body, "right_hand", main, self.item_specs, sheath)
+        off = self.shown_as.get(eq.get("offhand"))
+        if off:
+            spec = self.item_specs[off]
+            slot = spec.get("worn", "left_hand" if spec.get("hold") == "shield" else "hip_left")
+            attach_item(self.ctx, t, bind, body, slot, off, self.item_specs)
+        self._version = -1                        # new meshes need vertex arrays
 
     def update_spawn(self) -> None:
         """Lock in Rowan's current position as the death-respawn point."""
@@ -1375,8 +1430,8 @@ class CharacterSystem:
                                               index_buffer=g.ibo, index_element_size=4)
             for t in self.types.values():
                 vao(t.body)
-                if t.armor:
-                    vao(t.armor)
+                for g in t.armor_sets.values():
+                    vao(g)
                 for o in t.outfits:
                     vao(o.gpu)
                 for at in t.attachments:
@@ -1473,18 +1528,22 @@ class CharacterSystem:
                 for piece, k in c.wear.items():
                     o = t.outfits[k]
                     self._draw(prog, o.gpu, o.pieces.get(piece, []))
-            elif t.armor is not None:
-                covered = [SLOTS.index(s) for s in t.armor_slots if s != "head" or self.helmet]
-                bare = [i for i in range(len(SLOTS)) if i not in covered]
-                self._draw(prog, t.body, bare)
-                self._draw(prog, t.armor, covered)
+            elif t.armor_sets:
+                worn = {s: sid for s, sid in t.armor_wear.items() if s != "head" or self.helmet}
+                self._draw(prog, t.body, [i for i, s in enumerate(SLOTS) if s not in worn])
+                for sid in set(worn.values()):
+                    self._draw(prog, t.armor_sets[sid], [SLOTS.index(s) for s, v in worn.items() if v == sid])
             else:
                 self._draw(prog, t.body)
             set_uniform(prog, "u_skinned", 0)
-            put_away = a.anim.clip in ("swim", "tread") or (self.rowan is not None and a is self.rowan.a
-                                                               and self.rowan.sheathed)
+            swim = a.anim.clip in ("swim", "tread")
+            sheath = self.rowan is not None and a is self.rowan.a and self.rowan.sheathed
             for at in t.attachments:
-                if (put_away and at.in_hand) or (at.sheathed and not put_away):
+                if at.sheathed:                          # the sword on his back: only while it's put away
+                    show = swim or sheath
+                else:                                    # shields stay on the arm when he sheathes
+                    show = not at.in_hand or not (swim or (sheath and not at.shield))
+                if not show:
                     continue
                 m = model @ W[at.joint].astype(float) @ at.offset
                 set_uniform(prog, "u_model", glm.mat4(*m.T.ravel()))
