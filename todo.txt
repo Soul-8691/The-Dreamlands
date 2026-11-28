@@ -11,7 +11,7 @@ Remap the starting area/nearby/Caves/Ocean/Map maker
 Add more monsters (Lovecraft monsters [Zoog/Ghast/Shantak Rider]/Goblin spellcasters)/Bandit/Goblin/Cultist camps/Chickens
 Equipping/Combat/Attacks/Armor/Weapons/Magic
 Better NPC system/Better mouth movement system/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night
-Greetings/Talk (A press)/Dialogue/Voice lines (one of the bandit voices is really badly done)/Choices/Quests
+Greetings/Talk (A press)/Dialogue/Voice lines (one of the bandit voices is really badly done)/Choices/Quests/Contracts
 Upgrade/Forge/Gerda
 Shop inventory/Shop
 Controller support
