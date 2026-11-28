@@ -7,7 +7,7 @@ Helpful:
 
 To-Do:
 Beginning plot
-Remap the starting area/nearby/Caves/Ocean/Map maker
+Remap the starting area/nearby/Caves/Ocean/Map maker/Inns
 Add more monsters (Lovecraft monsters [Zoog/Ghast/Shantak Rider]/Goblin spellcasters)/Bandit/Goblin/Cultist camps/Chickens
 Equipping/Combat/Attacks/Armor/Weapons/Magic
 Better NPC system/Better mouth movement system/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night

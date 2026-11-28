@@ -43,7 +43,7 @@ You also need:
 | Purpose | Package | Notes |
 |---|---|---|
 | Window, input, audio | `pygame-ce` | `import pygame` still works; relative mouse mode; joystick support |
-| Rendering | `moderngl` | OpenGL 3.3 core |
+| Rendering | `moderngl` | OpenGL 4.3 core (compute shaders for Hi-Z occlusion culling) |
 | Math | `PyGLM`, `numpy` | glm for per-object math, numpy for bulk work |
 | Models | `pygltflib` (+ `trimesh` for offline tools) | GLB meshes, skins, animations |
 | Images | `Pillow` | Textures, icons, the biome mask |
@@ -127,12 +127,26 @@ Lycantrope/
 
 ## 5. Current state and next steps
 
-### 5.0 What's built (as of 2026-11-26)
+### 5.0 What's built (as of 2026-11-28)
 
 | System | Status |
 |---|---|
 | Terrain: 4-biome map, LOD, splat textures, sky, fog, water | Done |
 | Brackenvale village: 19 untextured props, fences, roads, day/night | Done |
+| HD trees from Tripo3D (two oaks, birch, yew, willows, hawthorn, maples, apple; TRE-19 to TRE-22); flowers and brambles removed (ferns kept) | Done |
+| Tree rendering: shorter draw distance, 8-view impostor cut-outs past 150 m, Hi-Z occlusion culling (OpenGL 4.3 compute) | Done |
+| Title screen with 3 save slots; saves at Waystones; test runs never touch the slots (UIX-27, TEC-16) | Done |
+| Pause menu (Inventory, Character, Settings, Game), 20-slot backpack, equip with stat preview, looting enemies and chests (UIX-07, UIX-26, WLD-17) | Done |
+| Requirements: underpowered weapons, catalysts and armor still work at a penalty (WPR-03, ARS-01); roll speed by equip load (CMB-26) | Done |
+| Rowan's model wears what's equipped: chainmail pieces per slot, the main-hand weapon (and on his back when sheathed), shield or Tome | Done |
+| Enemies drop only the weapons and shields they carry | Done |
+| World map (M), compass strip, region banners (UIX-02); debug overlay off by default | Done |
+| Waystone rest and fast travel | Done |
+| Poise rework: gradual regen, stagger grace for Rowan, half poise damage mid-swing (no more wolf stun-locks) | Done |
+| Ward Rite with the Tome of Wards: absorb shell, Faith- and catalyst-scaled cooldown (CMB-29, CMB-34, MAG-11) | Done |
+| Night-only spawns (WLD-11): cultists at Bracken Mere, a Men of Leng camp at Old Watch Beck (3 raiders + Raid-Captain) | Done |
+| Tripo3D characters: cultists (DRM-37) and Men of Leng (DRM-36) rigged and animated on the Tripo website; Leng Sabre (ONE-18) held and lootable | Done |
+| CODEBASE.md: how the renderer, assets and systems work | Done |
 | Third-person orbit camera, lock-on, strafing | Done |
 | Rowan movement: walk/run/sprint, jump, fall damage (4 m safe, 15 m lethal), stumble, landing roll | Done |
 | GPU skinning with 0.15 s crossfades; Rowan's full animation set including roll | Done |
@@ -150,16 +164,7 @@ Lycantrope/
 
 These are the gaps that make the game feel incomplete to any tester.
 
-**New games / Save files** *(UIX-27, TEC-16)*
-- Full save/load JSON: slot system (up to 3 slots), version number, all player state
-- Title screen: New Game, Continue, Load, Quit
-- In-game: Save at Waystones, quit-to-menu, load on death
-
-**Pause / Inventory / Equip / Loot** *(UIX-07, UIX-26)*
-- Pause menu: Resume, Save, Settings, Quit
-- Inventory grid: 20-slot backpack + equipped slots (head, chest, arms, legs, mainhand, offhand)
-- Item highlight on E-press, loot from downed enemies, chest interaction
-- Equip/unequip with live stat delta preview
+Save files, the title screen, the pause menu, inventory, equipping and looting are done (§5.0). Still open from them: quick-slot items, and models for the chests (INT-02) and for the armor sets beyond chainmail, so they show on Rowan too.
 
 **Greetings / Talk / Dialogue / Choices / Quests** *(NPC-18, UIX-28, NPC-15, NPC-02)*
 - A-press talk trigger with camera pull-in
@@ -167,6 +172,13 @@ These are the gaps that make the game feel incomplete to any tester.
 - Quest log: add entry, track active, mark resolved; pin one entry to show compass marker on HUD (UIX-28)
 - Context-aware greeting selection based on time, weather, prior interaction (NPC-15)
 - Revise Brackenvale NPC lines for Aldmoor's anxious-but-holding-together tone (RPG_CLONES.md §1.2)
+
+**Contracts** *(WLD-46, STY-22, STY-23, UIX-29; NPC-20 awaiting)*
+- Notice boards in Brackenvale and the roadside inns; contracts as data (`data/contracts.json`: monster, lair, payout, optional choice)
+- Taking a contract marks its area on the map and pins it in the quest log
+- Contracts that end in a choice (STY-22), stored as save flags that later events check (STY-23)
+- Bestiary tiers (UIX-29): read, seen, fought; each tier reveals more (lore, the Rite it fears, its opening). No oils (your note)
+- Haggling over the reward (NPC-20) if you approve it
 
 **Upgrade / Forge** *(CMB-24, NPC-07)*
 - Smith NPC Gerda Vane in Brackenvale; talk trigger, then forge UI
@@ -194,19 +206,24 @@ These are the gaps that make the game feel incomplete to any tester.
 **NPC weapons / NPC fights / Guard AI** *(NPC-17)*
 - Guards and named combat NPCs carry weapons and use the melee-basic FSM
 - Guards move to assist if they hear combat within 20 m
-- Loot drops weapon if killed
+- Killed NPCs drop the weapon they carry (enemies already do)
 
 **Beginning plot** *(STY-21)*
 - Cold open: Brackenvale already under strain — feed shortage, overdue merchant, Watch captain on no sleep
 - Rowan has the sword at the start (dull, carried because it was grandfather's); it wakes when Rowan decides not to run
 - The goblin raid arrives as confirmation of a fear, not a shock from nowhere (RPG_CLONES.md §1.1)
 
-**Bandit / Goblin camps** *(WLD-44)*
+**Bandit / Goblin / Cultist camps** *(WLD-44)*
 - 3–5 POI camps placed in the starting region
 - Simple patrol routes, lootable chest at center, respawn after 3 Waystone rests
+- Give the night camps (cultists at Bracken Mere, Men of Leng at Old Watch Beck) props: tents, a fire, a chest
+
+**Roadside inns** *(WLD-48)*
+- Small hubs on the roads between villages: a notice board, a fire to rest at, a cook and a merchant (no card table, per your note)
 
 **Remap starting area** *(WLD-45)*
 - Adjust terrain around Brackenvale: visible watchtower ruin on the ridge, road narrowing toward the Wolfwood, one clear sightline to Duskhold
+- The map has no sea yet (only lakes and rivers). A coastline is needed before the Drowned Coast, the galley incursion and any coastal camps
 
 ---
 
@@ -216,12 +233,12 @@ These are the gaps that make the game feel incomplete to any tester.
 - One color palette pass per biome: vale (muted green-gold), Wolfwood (deep blue-green), Frostfang (grey-white), Ashen Reach (ash and amber)
 - Fix slope blend seam colors (WLD-41)
 
-**World map / Directions / Caves** *(UIX-02, WLD-07)*
-- Compass strip on the HUD with cardinal labels and quest pin
-- Region name on-screen when entering a new biome
-- One hand-placed cave entrance near Brackenvale as proof-of-concept for interior lighting
+**Caves** *(WLD-07)*
+- The world map, compass and region names are done. Next: one hand-placed cave entrance near Brackenvale as proof-of-concept for interior lighting
+- Quest pin on the compass once the quest log exists
 
 **Performance** *(TEC-19)*
+- Tree impostors, a shorter tree draw distance and Hi-Z occlusion culling are done
 - Profile skinned mesh count, terrain draw calls, and shadows at the worst-case scene
 - Activation radius: enemies beyond 60 m run no AI tick; cap at 25 active skinned characters
 
@@ -230,13 +247,18 @@ These are the gaps that make the game feel incomplete to any tester.
 - Rumble on hit via `pygame.joystick.set_rumble`
 
 **More tree types** *(WLD-39)*
-- 2–3 new Meshy or Tripo3D tree variants for Wolfwood (gnarled, dead-but-standing, mossy)
+- Brackenvale's trees are now HD Tripo3D models. Next: 2–3 HD variants for the Wolfwood (gnarled, dead-but-standing, mossy)
 - Dense canopy placement to obscure enemy sightlines (addresses ART-21 silhouette goal)
 
+**Ground cover**
+- Replacements for the removed flowers and brambles that match the HD trees, and leaves on the ground
+
 **More monsters** *(ENM roster, MON-\* enemies)*
-- Use the 1,000-credit Meshy reload (§9.1) to build out the enemy roster toward M1's 20
+- Build out the enemy roster toward M1's 20 with Meshy (§9.1) and Tripo3D
+- Next from the Dreamlands roster: zoogs, ghasts, the Shantak Rider; then the moon-beasts that command the Men of Leng
 - Prioritize biome variety: at least 3 distinct enemy types per biome
 - Goblin spellcaster (ENM-07) already approved; queue with the next Meshy or Tripo3D batch
+- Chickens for the farms
 
 ---
 
@@ -253,6 +275,8 @@ These are the new ideas added 2026-11-26. Work through them once the todo.txt it
 | UIX-25 | Compact debug overlay |
 | WLD-43 | Enemy species vary by zone |
 | RPG_CLONES.md fixes | Brackenvale tone pass (§5.2), sigil slots rename (done), cold open STY-21 (§5.2) |
+| CMB-48 | Quick Rites mid-swing: a weaker one-handed cast that cancels a light attack's recovery |
+| Contracts | WLD-46, STY-22, STY-23, UIX-29 (in §5.1) and WLD-48 (in §5.2). The Witcher-inspired ideas that were denied (HER-11, CMB-46, CMB-47, STA-30, WLD-47, NPC-21) have no tasks |
 
 ---
 
@@ -362,6 +386,8 @@ bandit_pain_01,bandit,"[grunts] Argh — lucky shot!",,2
 | Music | 4 biome tracks + 1 combat layer + 1 boss | ElevenLabs Music (or ambience only) |
 
 Check your Meshy, Tripo3D and ElevenLabs credit balances against this list on Day 1. Generate **previews** first and refine only the ones you keep.
+
+**Tripo3D in practice** (see CODEBASE.md): models are generated through the Tripo MCP (HD model, T-pose for characters), downloaded and run through `gltfpack` to remove meshopt compression. Rigging and animation happen on the Tripo website (Auto Rig, then presets, then a GLB export with animations), because the MCP's retargeted clips can't be downloaded. The website's "defeat_02" preset exports as `defeat_03` (the fall to the ground).
 
 ### 9.1 Meshy budget until 2026-12-23: 1,000 credits
 
